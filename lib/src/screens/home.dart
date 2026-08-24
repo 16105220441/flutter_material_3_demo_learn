@@ -118,7 +118,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   one: FirstComponentList(showNavBottomBar: showNavBarExample,
                       scaffoldKey: scaffoldKey,
                       showSecondList: showMediumSizeLayout || showLargerSizeLayout),
-                  two: )
+                  two:
+              ),
 
             ),
       // TODO: Handle this case.

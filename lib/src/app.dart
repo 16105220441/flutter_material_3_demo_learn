@@ -1,6 +1,7 @@
 // App 从原来的 main.dart 移到这里（对照参考项目 lib/src/app.dart 手打补全）
 import 'package:flutter/material.dart';
 import 'package:material_3_demo/src/constants.dart';
+import 'package:material_3_demo/src/screens/home.dart';
 
 class App extends StatefulWidget {
 
@@ -80,7 +81,16 @@ class _AppState extends State<App>{
         useMaterial3: _useMaterial3,
         brightness: Brightness.dark,
       ),
-      home: ,
-    )
+      home: Home(
+        useLightMode: _useLightMode,
+        useMaterial3: _useMaterial3,
+        colorSelected: _colorSelected,
+        imageSelected:  _imageSelected,
+        handleBrightnessChange: _handleBrightnessChange,
+        handleMaterialVersionChange: _handleMaterialVersionChange,
+        handleColorSelect: _handleColorSelect,
+        colorSelectionMethod: _colorSelectionMethod, handleImageSelect: _handleImageSelect,
+      ),
+    );
   }
 }

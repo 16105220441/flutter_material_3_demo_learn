@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_3_demo/src/components/communication.dart';
 import 'package:material_3_demo/src/components/navigation.dart';
 import 'component_constants.dart';
+import 'containment.dart';
 
 class FirstComponentList extends StatelessWidget {
   final bool showNavBottomBar;
