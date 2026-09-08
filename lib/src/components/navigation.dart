@@ -356,6 +356,7 @@ class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
   }
 }
 
+
 class ExampleDestination {
 
   final String label;
@@ -383,3 +384,236 @@ const List<ExampleDestination> labelDestinations = <ExampleDestination>[
     Icon(Icons.bookmark),
   ),
 ];
+
+
+class ButtonAnchorExample extends StatelessWidget {
+  const ButtonAnchorExample({super.key});
+  
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MenuAnchor(
+      builder: (context,controller,child) {
+        return FilledButton.tonal(
+          onPressed: (){
+            if(controller.isOpen){
+              controller.close();
+            }else {
+              controller.open();
+            }
+          },
+          child: const Text('Show menu'),
+        );
+      },
+      menuChildren: [
+        MenuItemButton(
+          leadingIcon: const Icon(Icons.people_alt_outlined),
+          child: const Text('Item 1'),
+          onPressed: (){
+            
+          },
+        ),
+        MenuItemButton(
+          leadingIcon: const Icon(Icons.remove_circle_outline),
+          child: const Text('Item 2'),
+          onPressed: (){
+            
+          },
+        ),
+        MenuItemButton(
+          leadingIcon: const Icon(Icons.refresh),
+          onPressed: (){
+            
+          },
+          child: const Text('Item 3'),
+        )
+      ],
+    );
+  }
+}
+
+class NavigationRails extends StatelessWidget {
+  const NavigationRails({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const ComponentDecoration(
+        label: 'Navigation rail',
+        tooltipMessage: 'Use NavigationRail',
+        child: IntrinsicWidth(
+          child: SizedBox(
+            height: 420,
+            child: NavigationRailSection(),
+          ),
+        )
+    );
+  }
+}
+
+class NavigationRailSection extends StatefulWidget{
+  
+  const NavigationRailSection({super.key});
+  
+  @override
+  State<NavigationRailSection> createState() {
+    // TODO: implement createState
+    return _NavigationRailSectionState();
+  }
+}
+
+class _NavigationRailSectionState extends State<NavigationRailSection> {
+  int navRailIndex = 0;
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return NavigationRail(
+      onDestinationSelected: (selectedIndex){
+        setState(() {
+          navRailIndex = selectedIndex;
+        });
+      },
+      elevation: 4,
+      leading: FloatingActionButton(
+        child: const Icon(Icons.create),
+        onPressed: (){
+
+        },
+      ),
+      groupAlignment: 0.0,
+      selectedIndex: navRailIndex,
+      labelType: NavigationRailLabelType.selected,
+      destinations: <NavigationRailDestination>[
+        ...destinations.map((destination){
+          return NavigationRailDestination(
+              icon: destination.icon,
+              label: Text(destination.label),
+            selectedIcon: destination.selectedIcon,
+          );
+        })
+      ],
+    );
+  }
+}
+
+const List<ExampleDestination> destinations = <ExampleDestination>[
+  ExampleDestination(
+    'Inbox',
+    Icon(Icons.inbox_outlined),
+    Icon(Icons.inbox),
+  ),
+  ExampleDestination(
+    'Outbox',
+    Icon(Icons.send_outlined),
+    Icon(Icons.send),
+  ),
+  ExampleDestination(
+    'Favorites',
+    Icon(Icons.favorite_outline),
+    Icon(Icons.favorite),
+  ),
+  ExampleDestination(
+    'Trash',
+    Icon(Icons.delete_outline),
+    Icon(Icons.delete),
+  ),
+];
+
+class Tabs extends StatefulWidget{
+    const Tabs({super.key});
+
+    @override
+  State<Tabs> createState() {
+    // TODO: implement createState
+    return _TabsState();
+  }
+}
+
+class _TabsState extends State<Tabs> with TickerProviderStateMixin{
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ComponentDecoration(
+        label: 'Tabs',
+        tooltipMessage: 'Use TabBar',
+        child: SizedBox(
+          height: 80,
+          child: Scaffold(
+            appBar: AppBar(
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: const <Widget>[
+                  Tab(
+                    icon:Icon(Icons.videocam_outlined),
+                    text: 'Video',
+                    iconMargin: EdgeInsets.only(bottom: 0.0),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.photo_outlined),
+                    text: 'Photos',
+                    iconMargin: EdgeInsets.only(bottom: 0.0),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.audiotrack_sharp),
+                    text: 'Audio',
+                    iconMargin: EdgeInsets.only(bottom: 0.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+    );
+  }
+}
+
+class TopAppBars extends StatelessWidget{
+
+  const TopAppBars({super.key});
+
+  static final actions = [
+    IconButton(
+      icon: const Icon(Icons.attach_file),
+      onPressed: (){
+
+      },
+    ),
+    IconButton(
+      icon: const Icon(Icons.event),
+      onPressed: (){
+
+      },
+    ),
+    IconButton(
+      icon: const Icon(Icons.more_vert),
+      onPressed: (){
+
+      },
+    )
+
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ComponentDecoration(
+        label: 'Top app bars',
+        tooltipMessage:'Use AppBar, SliverAppBar, SliverAppBar.medium, or  SliverAppBar.large',
+        child: Column(
+
+        )
+    )
+  }
+}
